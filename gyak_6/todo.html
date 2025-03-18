@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+        body {
+
+            background-color: rgb(108, 180, 239);
+
+        }
+
+        #inputBtn,
+        #inputTxt {
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px 1px rgb(6, 5, 5);
+            margin: 5px;
+        }
+
+        li{
+            cursor: pointer;
+        }
+
+        .li_finished {
+
+            text-decoration: line-through;
+        }
+
+        .grid_style {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            grid-auto-rows: auto;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid_style">
+        <input id="inputTxt" type="text" placeholder="Írd be a tevékenységet">
+        <button id="inputBtn">Hozzáadás</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script src="todo.js">
+    </script>
+</body>
+
+</html>
