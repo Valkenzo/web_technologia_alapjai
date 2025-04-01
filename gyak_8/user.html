@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,7 +53,9 @@
 
                     userHtml += `</div>`;
                     resultDiv.innerHTML = userHtml;
-                });
+                    document.title=user.name+" GitHub datas";
+                })
+                .catch((err)=>console.log(err));
         }
         const searchText = new URLSearchParams(window.location.search);
         const userParam = searchText.get('name');
