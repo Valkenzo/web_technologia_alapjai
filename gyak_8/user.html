@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="result"></div>
+
+    <script src="app.js"></script>
+    <script>
+        function searchUser(searchText) {
+            fetch('https://api.github.com/users/' + encodeURIComponent(searchText),
+                {
+                    headers: {
+                        'Authorization': 'Bearer ' + GITHUB_ACCESS_TOKEN
+                    }
+                }
+
+            )
+                .then(res => res.json())
+                .then(user => {
+
+                    const resultDiv = document.querySelector('#result');
+                    let userHtml = `<div class="card">`;
+
+                    if (user.avatar_url && user.avatar_url.trim() !== "")
+                        userHtml += `<img src="${user.avatar_url}"></img>`;
+
+                    if (user.name && user.name.trim() !== "")
+                        userHtml += `<h4>Name: ${user.name}</h4>`;
+
+                    if (user.blog && user.blog.trim() !== "")
+                        userHtml += `<h4>Blog: <a href="${user.blog}">${user.blog}</a></h4>`;
+
+                    if (user.location && user.location.trim() !== "")
+                        userHtml += `<h4>Location: ${user.location}</h4>`;
+
+                    if (user.bio && user.bio.trim() !== "")
+                        userHtml += `<h4>Bio: ${user.bio}</h4>`;
+
+                    if (user.public_repos)
+                        userHtml += `<h4>Public repos: ${user.public_repos}</h4>`;
+
+                    if (user.followers)
+                        userHtml += `<h4>Followers: ${user.followers}</h4>`;
+
+
+                    userHtml += `</div>`;
+                    resultDiv.innerHTML = userHtml;
+                });
+        }
+        const searchText = new URLSearchParams(window.location.search);
+        const userParam = searchText.get('name');
+
+        if (userParam)
+            searchUser(userParam)
+    </script>
+</body>
+
+</html>
